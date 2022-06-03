@@ -14,7 +14,7 @@ const Container = styled.div`
 	background-color: white;
 	width: 100%;
 	box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.1), 0px 2px 3px rgba(0, 0, 0, 0.1);
-	border-radius: 6px;
+	border-radius: 10px;
 	overflow: hidden;
 `;
 
@@ -24,10 +24,15 @@ const Title = styled.h3`
 
 const Views = styled.p`
 	margin: 10px 0;
+	font-size: 15px;
 `;
 
 const StyledLink = styled(Link)`
 	margin-bottom: 10px;
+	cursor: pointer;
+	color: ${({ theme }) => theme.colors.header};
+	font-size: 15px;
+	cursor: pointer;
 `;
 
 const Content = styled.div`
@@ -51,7 +56,7 @@ const AlbumItem: FC<AlbumItemProps> = ({ album }) => (
 		<Content>
 			<Title>{album?.name}</Title>
 			<Views>Views: {album?.playcount}</Views>
-			<StyledLink to={`album/${album?.name}`}>Visit details</StyledLink>
+			<StyledLink to={`album/${album?.name}`}>details</StyledLink>
 		</Content>
 	</Container>
 );

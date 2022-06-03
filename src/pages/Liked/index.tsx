@@ -8,6 +8,7 @@ import BackgroundWrapper from '../../components/shared/BackgroundWrapper';
 const LogoHeading = styled.h1`
 	font-size: 28px;
 	font-weight: 600;
+	margin: 22px 0;
 `;
 
 const BlockWrapper = styled(BackgroundWrapper)`

@@ -1,38 +1,27 @@
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import BackgroundWrapper from '../BackgroundWrapper';
-
-const Container = styled.div`
-	width: 100%;
-	height: 40px;
-	background-color: lightblue;
-`;
-
-const Navigation = styled.nav`
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 40px;
-`;
-
-const NavigationItem = styled(Link)`
-	text-decoration: none;
-	align-items: center;
-	margin: 0 20px;
-	font-weight: 500;
-	cursor: pointer;
-`;
+import { Container } from '../../styles/Container.styled';
+import {
+	StyledHeader,
+	Logo,
+	Navigation,
+	NavigationItem,
+} from '../../styles/Header.styled';
+import { FAVORITE_ARTIST } from '../../../utils/constants';
+import { Flex } from '../../styles/Flex.styled';
 
 const Header = () => (
-	<Container>
-		<BackgroundWrapper>
-			<Navigation>
-				<NavigationItem to="/">Home</NavigationItem>
-				<NavigationItem to="/search">Search</NavigationItem>
-				<NavigationItem to="/liked">Liked</NavigationItem>
-			</Navigation>
-		</BackgroundWrapper>
-	</Container>
+	<StyledHeader>
+		<Container>
+			<Flex>
+				<Logo to={`/`}>{FAVORITE_ARTIST} fans app</Logo>
+				<Navigation>
+					<NavigationItem to="/">Home</NavigationItem>
+					<NavigationItem to="/search">Search</NavigationItem>
+					<NavigationItem to="/liked">Like</NavigationItem>
+				</Navigation>
+			</Flex>
+		</Container>
+	</StyledHeader>
 );
 
 export default Header;

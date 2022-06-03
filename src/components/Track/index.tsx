@@ -1,5 +1,7 @@
 import { FC } from 'react';
 import styled from 'styled-components';
+import { Button } from '../styles/Button.styled';
+import { Container, TrackName } from '../styles/Track.styled';
 import { Track } from '../../models/models';
 import { useAppDispatch, useAppSelector } from '../../store';
 import {
@@ -11,16 +13,6 @@ import {
 type SingleTrackProps = {
 	track: Track;
 };
-
-const Container = styled.div`
-	width: 100%;
-	display: flex;
-	justify-content: space-between;
-	border: 1px solid lightblue;
-	border-radius: 4px;
-	margin: 12px 2px;
-	padding: 4px;
-`;
 
 const SingleTrack: FC<SingleTrackProps> = ({ track }) => {
 	const dispatch = useAppDispatch();
@@ -38,18 +30,25 @@ const SingleTrack: FC<SingleTrackProps> = ({ track }) => {
 		dispatch(dislikeTrack(track));
 	};
 
+	console.log('track', track);
+
 	return (
 		<Container>
-			<h3>{track.name}</h3>
+			<TrackName>
+				{track.name}{' '}
+				<a href={track.url} target="_blank">
+					LastFM
+				</a>
+			</TrackName>
 
 			{isTrackLiked ? (
-				<button type="button" onClick={handleDislikeTrack}>
-					Remove from favorites
-				</button>
+				<Button onClick={handleDislikeTrack} type="button">
+					Unlike
+				</Button>
 			) : (
-				<button type="button" onClick={handleLikeTrack}>
-					Add to favorites
-				</button>
+				<Button onClick={handleLikeTrack} type="button">
+					Like
+				</Button>
 			)}
 		</Container>
 	);

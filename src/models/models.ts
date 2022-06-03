@@ -11,6 +11,7 @@ export interface Track {
 	url: string;
 	duration: number;
 	artist?: Artist;
+	image: { '#text': string; size: string }[];
 }
 
 export interface Artist {

@@ -3,11 +3,11 @@ import { FC, ReactNode } from 'react';
 
 const Wrapper = styled.div`
 	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-	background-color: #f1f2f7;
+	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+	background-color: ${({ theme }) => theme.colors.gridBg};
 	gap: 20px;
 	justify-items: center;
-	padding: 20px;
+	padding: 12px 0;
 `;
 
 export const GridItem: FC<ReactNode> = ({ children }) => (

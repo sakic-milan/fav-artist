@@ -1,27 +1,18 @@
 import styled from 'styled-components';
-import BackgroundWrapper from '../BackgroundWrapper';
+import { Container } from '../../styles/Container.styled';
 import { FAVORITE_ARTIST } from '../../../utils/constants';
 
-const Content = styled.div`
-	display: flex;
-	justify-content: center;
-	padding: 10px;
-`;
-
-const Background = styled.div`
-	background-color: lightblue;
-	width: 100%;
-	overflow: hidden;
-	height: 40px;
-	position: relative;
+const StyledFooter = styled.footer`
+	margin-top: 24px;
+	background-color: ${({ theme }) => theme.colors.header};
+	color: ${({ theme }) => theme.colors.white};
+	padding: 6px 0;
 `;
 
 const Footer = () => (
-	<Background>
-		<BackgroundWrapper>
-			<Content>{FAVORITE_ARTIST} fans app</Content>
-		</BackgroundWrapper>
-	</Background>
+	<StyledFooter>
+		<Container>{FAVORITE_ARTIST} fans app</Container>
+	</StyledFooter>
 );
 
 export default Footer;

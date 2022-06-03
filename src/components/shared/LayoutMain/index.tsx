@@ -1,25 +1,19 @@
 import { FC, ReactNode } from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
+import { Container } from '../../styles/Container.styled';
+import GlobalStyles from '../../styles/Global';
+
+import { theme } from '../../styles/theme.styled';
 import Header from '../Header';
 import Footer from '../Footer';
 
-const LayoutWrapper = styled.div`
-	display: flex;
-	flex-direction: column;
-`;
-
-const Main = styled.main`
-	display: flex;
-	min-height: calc(100vh - 80px);
-	flex-grow: 1;
-`;
-
 const LayoutMain: FC<{ children: ReactNode }> = ({ children }) => (
-	<LayoutWrapper>
+	<ThemeProvider theme={theme}>
+		<GlobalStyles />
 		<Header />
-		<Main>{children}</Main>
+		<Container>{children}</Container>
 		<Footer />
-	</LayoutWrapper>
+	</ThemeProvider>
 );
 
 export default LayoutMain;

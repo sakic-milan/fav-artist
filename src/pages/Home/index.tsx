@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import styled from 'styled-components';
+import { Button } from '../../components/styles/Button.styled';
 import { get } from '../../utils/api';
 import { Album } from '../../models/models';
 import { sortAlbumsByName } from '../../utils/sort';
@@ -36,21 +37,19 @@ const Home = () => {
 
 	const Heading = styled.div`
 		display: flex;
+		flex-direction: row-reverse;
 		justify-content: space-between;
-		margin: 22px 8px;
+		margin: 18px 0;
 	`;
-	const LogoHeading = styled.h1`
-		font-size: 28px;
-		font-weight: 600;
-	`;
+
+	const buttonText = `Sort by ${sortByName ? 'popularity' : 'name'}`;
 
 	return (
 		<BackgroundWrapper>
 			<Heading>
-				<LogoHeading>{FAVORITE_ARTIST} fans app</LogoHeading>
-				<button onClick={toggleSort} type="button">{`Sort by ${
-					sortByName ? 'name' : 'popularity'
-				}`}</button>
+				<Button onClick={toggleSort} type="button">
+					{buttonText}
+				</Button>
 			</Heading>
 			<GridItem>
 				{sortedAlbums?.map(album => (

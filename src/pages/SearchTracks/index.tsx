@@ -4,6 +4,7 @@ import { Track } from '../../models/models';
 import SingleTrack from '../../components/Track';
 import { get } from '../../utils/api';
 import { FAVORITE_ARTIST } from '../../utils/constants';
+import { Button } from '../../components/styles/Button.styled';
 import BackgroundWrapper from '../../components/shared/BackgroundWrapper';
 
 const SearchTracks = () => {
@@ -36,16 +37,32 @@ const SearchTracks = () => {
 	const LogoHeading = styled.h1`
 		font-size: 28px;
 		font-weight: 600;
-		margin-bottom: 30px;
+		margin: 22px 0;
+	`;
+
+	const Input = styled.input`
+		font-size: 18px;
+		padding: 10px;
+		margin: 10px;
+		border: 1px solid ${({ theme }) => theme.colors.header};
+		border-radius: 60px;
+		::placeholder {
+			color: palevioletred;
+		}
+
+		&:focus {
+			outline: red;
+		}
 	`;
 
 	return !isLoading ? (
 		<BackgroundWrapper>
 			<LogoHeading>Explore {FAVORITE_ARTIST} tracks:</LogoHeading>
-			<input type="text" name="search" value={search} onChange={handleChange} />
-			<button type="button" onClick={handleSearch}>
+			{/* value={search} onChange={handleChange} */}
+			<Input type="text" name="search" />
+			<Button type="button" onClick={handleSearch}>
 				Search
-			</button>
+			</Button>
 			{tracks.map(track => (
 				<SingleTrack key={track.name} track={track} />
 			))}
