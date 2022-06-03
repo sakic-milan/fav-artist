@@ -36,7 +36,7 @@ const SingleTrack: FC<SingleTrackProps> = ({ track }) => {
 		<Container>
 			<TrackName>
 				{track.name}{' '}
-				<a href={track.url} target="_blank">
+				<a href={track.url} target="_blank" rel="noopener">
 					LastFM
 				</a>
 			</TrackName>

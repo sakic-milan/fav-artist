@@ -13,7 +13,7 @@ const Header = () => (
 	<StyledHeader>
 		<Container>
 			<Flex>
-				<Logo to={`/`}>{FAVORITE_ARTIST} fans app</Logo>
+				<Logo to="/">{FAVORITE_ARTIST} fans app</Logo>
 				<Navigation>
 					<NavigationItem to="/">Home</NavigationItem>
 					<NavigationItem to="/search">Search</NavigationItem>
