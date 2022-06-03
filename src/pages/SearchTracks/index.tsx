@@ -7,6 +7,29 @@ import { FAVORITE_ARTIST } from '../../utils/constants';
 import { Button } from '../../components/styles/Button.styled';
 import BackgroundWrapper from '../../components/shared/BackgroundWrapper';
 
+const LogoHeading = styled.h1`
+	font-size: 28px;
+	font-weight: 600;
+	margin: 22px 0;
+`;
+
+const Input = styled.input`
+	font-size: 18px;
+	padding: 10px;
+	padding-left: 20px;
+	border: 1px solid ${({ theme }) => theme.colors.header};
+	border-radius: 60px;
+	margin-right: 12px;
+
+	::placeholder {
+		color: palevioletred;
+	}
+
+	&:focus {
+		outline: red;
+	}
+`;
+
 const SearchTracks = () => {
 	const [search, setSearch] = useState('');
 	const [tracks, setTracks] = useState<Track[]>([]);
@@ -34,32 +57,11 @@ const SearchTracks = () => {
 			.finally(() => setIsLoading(false));
 	};
 
-	const LogoHeading = styled.h1`
-		font-size: 28px;
-		font-weight: 600;
-		margin: 22px 0;
-	`;
-
-	const Input = styled.input`
-		font-size: 18px;
-		padding: 10px;
-		margin: 10px;
-		border: 1px solid ${({ theme }) => theme.colors.header};
-		border-radius: 60px;
-		::placeholder {
-			color: palevioletred;
-		}
-
-		&:focus {
-			outline: red;
-		}
-	`;
-
 	return !isLoading ? (
 		<BackgroundWrapper>
 			<LogoHeading>Explore {FAVORITE_ARTIST} tracks:</LogoHeading>
 			{/* value={search} onChange={handleChange} */}
-			<Input type="text" name="search" />
+			<Input type="text" name="search" value={search} onChange={handleChange} />
 			<Button type="button" onClick={handleSearch}>
 				Search
 			</Button>

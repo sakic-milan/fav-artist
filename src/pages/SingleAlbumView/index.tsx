@@ -30,17 +30,13 @@ const SingleAlbumView = () => {
 	const LogoHeading = styled.h1`
 		font-size: 28px;
 		font-weight: 600;
-	`;
-	const LogoHeadingSmall = styled.h3`
-		font-size: 20px;
-		text-decoration: underline;
-		font-weight: 600;
+		margin: 22px 0;
 	`;
 
 	return (
 		<BackgroundWrapper>
 			<LogoHeading>Album: {name}</LogoHeading>
-			<LogoHeadingSmall>Track list:</LogoHeadingSmall>
+
 			{tracks.map(track => (
 				<SingleTrack key={track.name} track={track} />
 			))}
