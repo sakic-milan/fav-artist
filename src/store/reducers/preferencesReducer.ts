@@ -9,7 +9,7 @@ interface PreferencesState {
 
 const initialState: PreferencesState = {
 	likedTracks: [],
-	favArtist: 'Kanye',
+	favArtist: '',
 };
 
 export const preferencesSlice = createSlice({
