@@ -6,22 +6,28 @@ import {
 	Navigation,
 	NavigationItem,
 } from '../../styles/Header.styled';
-import { FAVORITE_ARTIST } from '../../../utils/constants';
+import { useAppSelector } from '../../../store';
+import { selectFavArtist } from '../../../store/reducers';
+
 import { Flex } from '../../styles/Flex.styled';
 
-const Header = () => (
-	<StyledHeader>
-		<Container>
-			<Flex>
-				<Logo to="/">{FAVORITE_ARTIST} fans app</Logo>
-				<Navigation>
-					<NavigationItem to="/">Home</NavigationItem>
-					<NavigationItem to="/search">Search</NavigationItem>
-					<NavigationItem to="/liked">Like</NavigationItem>
-				</Navigation>
-			</Flex>
-		</Container>
-	</StyledHeader>
-);
+const Header = () => {
+	const favArtist = useAppSelector(selectFavArtist);
+
+	return (
+		<StyledHeader>
+			<Container>
+				<Flex>
+					<Logo to="/">{favArtist} fans app</Logo>
+					<Navigation>
+						<NavigationItem to="/">Home</NavigationItem>
+						<NavigationItem to="/search">Search</NavigationItem>
+						<NavigationItem to="/liked">Like</NavigationItem>
+					</Navigation>
+				</Flex>
+			</Container>
+		</StyledHeader>
+	);
+};
 
 export default Header;

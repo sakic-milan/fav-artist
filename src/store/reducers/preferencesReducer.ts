@@ -4,10 +4,12 @@ import type { RootState } from '../index';
 
 interface PreferencesState {
 	likedTracks: Track[];
+	favArtist: string;
 }
 
 const initialState: PreferencesState = {
 	likedTracks: [],
+	favArtist: 'Kanye',
 };
 
 export const preferencesSlice = createSlice({
@@ -30,13 +32,20 @@ export const preferencesSlice = createSlice({
 				),
 			];
 		},
+		setFavArtist: (state, action: PayloadAction<string>) => {
+			state.favArtist = action.payload;
+		},
 	},
 });
 
-export const { likeTrack, dislikeTrack } = preferencesSlice.actions;
+export const { likeTrack, dislikeTrack, setFavArtist } =
+	preferencesSlice.actions;
 
 export const selectLikedTracks = (state: RootState) =>
 	state.preferences.likedTracks;
+
+export const selectFavArtist = (state: RootState) =>
+	state.preferences.favArtist;
 
 export const selectIfTrackIsLiked = (state: RootState, track: Track) =>
 	!!state.preferences.likedTracks.find(t => t.name === track.name);

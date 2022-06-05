@@ -1,1 +1,1 @@
-export const FAVORITE_ARTIST = process.env.REACT_APP_FAVORITE_ARTIST;
+

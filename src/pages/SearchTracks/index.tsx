@@ -1,9 +1,11 @@
 import { useState, ChangeEvent } from 'react';
 import styled from 'styled-components';
 import { Track } from '../../models/models';
+import { useAppSelector } from '../../store';
+import { selectFavArtist } from '../../store/reducers';
+
 import SingleTrack from '../../components/Track';
 import { get } from '../../utils/api';
-import { FAVORITE_ARTIST } from '../../utils/constants';
 import { Button } from '../../components/styles/Button.styled';
 import BackgroundWrapper from '../../components/shared/BackgroundWrapper';
 
@@ -34,8 +36,9 @@ const SearchTracks = () => {
 	const [search, setSearch] = useState('');
 	const [tracks, setTracks] = useState<Track[]>([]);
 	const [isLoading, setIsLoading] = useState(false);
+	const favArtist = useAppSelector(selectFavArtist);
 
-	const url = `method=track.search&artist=${FAVORITE_ARTIST}&track=${search}&format=json`;
+	const url = `method=track.search&artist=${favArtist}&track=${search}&format=json`;
 
 	const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
 		setSearch(e.target.value);
@@ -59,7 +62,7 @@ const SearchTracks = () => {
 
 	return !isLoading ? (
 		<BackgroundWrapper>
-			<LogoHeading>Explore {FAVORITE_ARTIST} tracks:</LogoHeading>
+			<LogoHeading>Explore {favArtist} tracks:</LogoHeading>
 			{/* value={search} onChange={handleChange} */}
 			<Input type="text" name="search" value={search} onChange={handleChange} />
 			<Button type="button" onClick={handleSearch}>

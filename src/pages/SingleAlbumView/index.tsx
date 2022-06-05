@@ -2,20 +2,21 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { Track } from '../../models/models';
+import { selectFavArtist } from '../../store/reducers';
+import { useAppSelector } from '../../store';
+
 import { get } from '../../utils/api';
 import SingleTrack from '../../components/Track';
-import { FAVORITE_ARTIST } from '../../utils/constants';
+
 import { BackgroundWrapper } from '../../components/shared/BackgroundWrapper';
 
 const SingleAlbumView = () => {
 	let { name } = useParams();
 	const [tracks, setTracks] = useState<Track[]>([]);
 	const [isLoading, setIsLoading] = useState(false);
-
+	const favArtist = useAppSelector(selectFavArtist);
 	const getSingleAlbumData = async () => {
-		get(
-			`method=album.getinfo&artist=${FAVORITE_ARTIST}&album=${name}&format=json`
-		)
+		get(`method=album.getinfo&artist=${favArtist}&album=${name}&format=json`)
 			.then(res => {
 				setTracks(res.album.tracks.track);
 			})

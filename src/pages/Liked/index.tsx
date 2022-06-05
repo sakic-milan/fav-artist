@@ -1,8 +1,7 @@
 import styled from 'styled-components';
 import { useAppSelector } from '../../store';
-import { selectLikedTracks } from '../../store/reducers';
+import { selectLikedTracks, selectFavArtist } from '../../store/reducers';
 import SingleTrack from '../../components/Track';
-import { FAVORITE_ARTIST } from '../../utils/constants';
 import BackgroundWrapper from '../../components/shared/BackgroundWrapper';
 
 const LogoHeading = styled.h1`
@@ -17,10 +16,11 @@ const BlockWrapper = styled(BackgroundWrapper)`
 
 const Liked = () => {
 	const likedTracks = useAppSelector(selectLikedTracks);
+	const favArtist = useAppSelector(selectFavArtist);
 
 	return (
 		<BlockWrapper>
-			<LogoHeading>Your favourite {FAVORITE_ARTIST} tracks:</LogoHeading>
+			<LogoHeading>Your favourite {favArtist} tracks:</LogoHeading>
 			{likedTracks.map(track => (
 				<SingleTrack key={track.name} track={track} />
 			))}

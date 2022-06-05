@@ -4,17 +4,18 @@ import { Button } from '../../components/styles/Button.styled';
 import { get } from '../../utils/api';
 import { Album } from '../../models/models';
 import { sortAlbumsByName } from '../../utils/sort';
-import { FAVORITE_ARTIST } from '../../utils/constants';
+import { useAppSelector } from '../../store';
+import { selectFavArtist } from '../../store/reducers';
 import AlbumItem from '../../components/Album/AlbumItem';
 import BackgroundWrapper from '../../components/shared/BackgroundWrapper';
 import GridItem from '../../components/shared/GridItem';
-
-const url = `method=artist.gettopalbums&artist=${FAVORITE_ARTIST}&format=json`;
 
 const Home = () => {
 	const [albums, setAlbums] = useState<Album[]>();
 	const [isLoading, setIsLoading] = useState(false);
 	const [sortByName, setSortByName] = useState(false);
+	const favArtist = useAppSelector(selectFavArtist);
+	const url = `method=artist.gettopalbums&artist=${favArtist}&format=json`;
 
 	const toggleSort = () => {
 		setSortByName(!sortByName);
