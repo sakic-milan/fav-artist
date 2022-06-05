@@ -23,6 +23,7 @@ const Header = () => {
 						<NavigationItem to="/">Home</NavigationItem>
 						<NavigationItem to="/search">Search</NavigationItem>
 						<NavigationItem to="/liked">Like</NavigationItem>
+						<NavigationItem to="/settings">Settings</NavigationItem>
 					</Navigation>
 				</Flex>
 			</Container>
