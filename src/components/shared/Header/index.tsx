@@ -9,6 +9,11 @@ import {
 import { useAppSelector } from '../../../store';
 import { selectFavArtist } from '../../../store/reducers';
 
+import { SettingsOutline } from '@styled-icons/evaicons-outline/SettingsOutline';
+import { FavoriteBorder } from '@styled-icons/material/FavoriteBorder';
+import { Search } from '@styled-icons/boxicons-regular/Search';
+import { Home } from '@styled-icons/boxicons-regular/Home';
+
 import { Flex } from '../../styles/Flex.styled';
 
 const Header = () => {
@@ -18,12 +23,23 @@ const Header = () => {
 		<StyledHeader>
 			<Container>
 				<Flex>
-					<Logo to="/">{favArtist} fans app</Logo>
+					<Logo to="/">{favArtist?.name} fans app</Logo>
 					<Navigation>
-						<NavigationItem to="/">Home</NavigationItem>
-						<NavigationItem to="/search">Search</NavigationItem>
-						<NavigationItem to="/liked">Like</NavigationItem>
-						<NavigationItem to="/settings">Settings</NavigationItem>
+						<NavigationItem to="/">
+							<Home size="28" />
+							Home
+						</NavigationItem>
+						<NavigationItem to="/search">
+							<Search size="28" />
+							Search
+						</NavigationItem>
+						<NavigationItem to="/liked">
+							<FavoriteBorder size="28" />
+							Likes
+						</NavigationItem>
+						<NavigationItem to="/settings">
+							<SettingsOutline size="28" /> Settings
+						</NavigationItem>
 					</Navigation>
 				</Flex>
 			</Container>

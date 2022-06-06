@@ -21,13 +21,16 @@ export const Navigation = styled.nav`
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	height: 40px;
+	height: 42px;
 `;
 
 export const NavigationItem = styled(Link)`
+	display: flex;
+	flex-direction: column;
 	text-decoration: none;
 	align-items: center;
-	margin: 0 20px;
+	margin-left: 28px;
+	font-size: 18px;
 	font-weight: 500;
 	cursor: pointer;
 `;

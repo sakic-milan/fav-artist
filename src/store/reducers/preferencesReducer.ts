@@ -1,15 +1,15 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Track } from '../../models/models';
+import { Track, Artist } from '../../models/models';
 import type { RootState } from '../index';
 
 interface PreferencesState {
 	likedTracks: Track[];
-	favArtist: string;
+	favArtist: Artist | null;
 }
 
 const initialState: PreferencesState = {
 	likedTracks: [],
-	favArtist: '',
+	favArtist: null,
 };
 
 export const preferencesSlice = createSlice({
@@ -32,7 +32,7 @@ export const preferencesSlice = createSlice({
 				),
 			];
 		},
-		setFavArtist: (state, action: PayloadAction<string>) => {
+		setFavArtist: (state, action: PayloadAction<Artist>) => {
 			state.favArtist = action.payload;
 		},
 	},

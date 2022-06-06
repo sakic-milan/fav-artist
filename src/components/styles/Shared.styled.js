@@ -1,5 +1,11 @@
 import styled from 'styled-components';
 
+export const PageHeading = styled.h1`
+	font-size: 28px;
+	font-weight: 600;
+	margin: 22px 0;
+`;
+
 export const Button = styled.button`
 	border-radius: 60px;
 	border: none;
@@ -14,5 +20,22 @@ export const Button = styled.button`
 	&:hover {
 		opacity: 0.9;
 		transform: scale(0.98);
+	}
+`;
+
+export const Input = styled.input`
+	font-size: 18px;
+	padding: 10px;
+	padding-left: 20px;
+	border: 1px solid ${({ theme }) => theme.colors.header};
+	border-radius: 60px;
+	margin-right: 12px;
+
+	::placeholder {
+		color: palevioletred;
+	}
+
+	&:focus {
+		outline: red;
 	}
 `;

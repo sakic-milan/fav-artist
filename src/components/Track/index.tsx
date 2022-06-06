@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import styled from 'styled-components';
-import { Button } from '../styles/Button.styled';
-import { Container, TrackName } from '../styles/Track.styled';
+import { Button } from '../styles/Shared.styled';
+import { Container, TrackName, Liked } from '../styles/Track.styled';
 import { Track } from '../../models/models';
 import { useAppDispatch, useAppSelector } from '../../store';
 import {
@@ -9,6 +9,8 @@ import {
 	likeTrack,
 	selectIfTrackIsLiked,
 } from '../../store/reducers';
+
+import { Heart } from '@styled-icons/bootstrap/Heart';
 
 type SingleTrackProps = {
 	track: Track;
@@ -30,8 +32,6 @@ const SingleTrack: FC<SingleTrackProps> = ({ track }) => {
 		dispatch(dislikeTrack(track));
 	};
 
-	console.log('track', track);
-
 	return (
 		<Container>
 			<TrackName>
@@ -43,11 +43,11 @@ const SingleTrack: FC<SingleTrackProps> = ({ track }) => {
 
 			{isTrackLiked ? (
 				<Button onClick={handleDislikeTrack} type="button">
-					Unlike
+					<Liked size="26" />
 				</Button>
 			) : (
 				<Button onClick={handleLikeTrack} type="button">
-					Like
+					<Heart size="22" />
 				</Button>
 			)}
 		</Container>

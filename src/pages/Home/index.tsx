@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import styled from 'styled-components';
-import { Button } from '../../components/styles/Button.styled';
+import { Button } from '../../components/styles/Shared.styled';
 import { get } from '../../utils/api';
 import { Album } from '../../models/models';
 import { sortAlbumsByName } from '../../utils/sort';
@@ -9,13 +9,15 @@ import { selectFavArtist } from '../../store/reducers';
 import AlbumItem from '../../components/Album/AlbumItem';
 import BackgroundWrapper from '../../components/shared/BackgroundWrapper';
 import GridItem from '../../components/shared/GridItem';
+import { SortAlphaDown } from '@styled-icons/bootstrap/SortAlphaDown';
+import { SortNumericDownAlt } from '@styled-icons/fa-solid/SortNumericDownAlt';
 
 const Home = () => {
 	const [albums, setAlbums] = useState<Album[]>();
 	const [isLoading, setIsLoading] = useState(false);
 	const [sortByName, setSortByName] = useState(false);
 	const favArtist = useAppSelector(selectFavArtist);
-	const url = `method=artist.gettopalbums&artist=${favArtist}&format=json`;
+	const url = `method=artist.gettopalbums&artist=${favArtist?.name}&format=json`;
 
 	const toggleSort = () => {
 		setSortByName(!sortByName);
@@ -43,7 +45,18 @@ const Home = () => {
 		margin: 18px 0;
 	`;
 
-	const buttonText = `Sort by ${sortByName ? 'popularity' : 'name'}`;
+	const name = (
+		<>
+			Sort by <SortAlphaDown size="20" />
+		</>
+	);
+	const popularity = (
+		<>
+			Sort by <SortNumericDownAlt size="20" />
+		</>
+	);
+
+	const buttonText = sortByName ? name : popularity;
 
 	return (
 		<BackgroundWrapper>

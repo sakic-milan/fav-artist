@@ -1,72 +1,98 @@
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-import styled from 'styled-components';
-import { debounce } from 'lodash';
-import { useEffect, useState } from 'react';
-import { useAppDispatch, useAppSelector } from '../../store';
-
-import { selectFavArtist, setFavArtist } from '../../store/reducers';
+import { useState } from 'react';
+import { useAppDispatch } from '../../store';
+import { setFavArtist } from '../../store/reducers';
 import { get } from '../../utils/api';
+import {
+	PageHeading,
+	Input,
+	Button,
+} from '../../components/styles/Shared.styled';
+import {
+	SearchGrid,
+	ArtistCard,
+	CardImage,
+} from '../../components/styles/Settings.styled';
+import { Artist } from '../../models/models';
+import placeholderImg from '../../assets/images/placeholder.png';
 
-import SingleTrack from '../../components/Track';
-import BackgroundWrapper from '../../components/shared/BackgroundWrapper';
-
-const DEBOUNCE = 1000;
-
-const Liked = () => {
-	const dispatch = useAppDispatch();
-	const [artists, setArtists] = useState<string[]>([]);
+const Settings = () => {
+	const [searchResults, setSearchResults] = useState<Artist[]>([]);
+	const [query, setQuery] = useState<string>('');
 	const [isLoading, setIsLoading] = useState<boolean>(false);
-	const [selectedArtist, setSelectedArtist] = useState('');
-	const [search, setSearch] = useState('');
+	const dispatch = useAppDispatch();
 
-	const url = `method=artist.search&artist=${search}&format=json`;
+	const url = `method=artist.search&artist=${query}&format=json`;
 
-	const favArtist = useAppSelector(selectFavArtist);
-
-	const handleChangeFavArtist = (artist: string) => {
+	const handleChangeFavArtist = (artist: Artist) => {
 		dispatch(setFavArtist(artist));
 	};
 
 	const getArtists = async () => {
+		setIsLoading(true);
 		get(url)
 			.then(res => {
-				const artists = res.results.artistmatches.artist.map(
-					(artist: { name: string }) => artist.name
-				);
-				setArtists(artists);
+				console.log(res.results.artistmatches.artist);
+				setSearchResults(res.results.artistmatches.artist);
 			})
 			.catch(e => {
-				alert("Couldn't get albums for selected artist");
-			});
+				alert("Couldn't get artists");
+			})
+			.finally(() => setIsLoading(false));
 	};
-
-	useEffect(() => {
-		getArtists();
-	}, []);
 
 	const handleSearch = () => {
 		getArtists();
 	};
 
+	const asyncSearch = () => {
+		if (query.length >= 2) {
+			getArtists();
+		}
+	};
+
+	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		setQuery(e.target.value);
+		asyncSearch();
+	};
+
 	return (
 		<>
-			<h1>{favArtist}</h1>
-
-			<input
-				placeholder="search"
-				value={search}
-				onChange={e => setSearch(e.target.value)}
-			/>
-			<button type="button" onClick={handleSearch}>
+			<PageHeading>Choose your favorite artist</PageHeading>
+			<Input value={query} onChange={handleInputChange} />
+			<Button type="button" onClick={handleSearch}>
 				Search
-			</button>
-
-			{artists.map(artist => (
-				// eslint-disable-next-line jsx-a11y/click-events-have-key-events
-				<p onClick={e => handleChangeFavArtist(artist)}>{artist}</p>
-			))}
+			</Button>
+			<SearchGrid>
+				{searchResults.map(artist => (
+					<ResultCard
+						key={artist.mbid}
+						artist={artist}
+						setFavArtist={handleChangeFavArtist}
+					/>
+				))}
+			</SearchGrid>
 		</>
 	);
 };
 
-export default Liked;
+export default Settings;
+
+const ResultCard = (props: {
+	artist: Artist;
+	setFavArtist: (artist: Artist) => void;
+}) => {
+	const { artist, setFavArtist } = props;
+	return (
+		<ArtistCard onClick={() => setFavArtist(artist)}>
+			<p>{artist.name}</p>
+			<span>{`Listeners: ${artist.listeners}`}</span>
+			<CardImage
+				src={
+					artist?.image[2]['#text'] === ''
+						? placeholderImg
+						: artist?.image[2]['#text']
+				}
+			/>
+		</ArtistCard>
+	);
+};

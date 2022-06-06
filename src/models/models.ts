@@ -18,4 +18,6 @@ export interface Artist {
 	mbid: number;
 	name: string;
 	url: string;
+	listeners: string;
+	image: { '#text': string; size: string }[];
 }

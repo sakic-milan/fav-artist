@@ -16,7 +16,9 @@ const SingleAlbumView = () => {
 	const [isLoading, setIsLoading] = useState(false);
 	const favArtist = useAppSelector(selectFavArtist);
 	const getSingleAlbumData = async () => {
-		get(`method=album.getinfo&artist=${favArtist}&album=${name}&format=json`)
+		get(
+			`method=album.getinfo&artist=${favArtist?.name}&album=${name}&format=json`
+		)
 			.then(res => {
 				setTracks(res.album.tracks.track);
 			})
