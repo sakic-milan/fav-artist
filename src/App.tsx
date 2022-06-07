@@ -1,11 +1,14 @@
-import { Routes, Route } from 'react-router-dom';
+import { Route,Routes } from 'react-router-dom';
+
+import 'dotenv/config';
+
 import LayoutMain from './components/shared/LayoutMain';
 import Home from './pages/Home';
 import Liked from './pages/Liked';
 import SearchTracks from './pages/SearchTracks';
-import SingleAlbumView from './pages/SingleAlbumView';
 import Settings from './pages/Settings';
-import 'dotenv/config';
+import SingleAlbumView from './pages/SingleAlbumView';
+
 import './App.css';
 
 const App = () => (

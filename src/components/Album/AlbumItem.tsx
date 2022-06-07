@@ -1,8 +1,9 @@
-import { Link } from 'react-router-dom';
 import { FC } from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { Album } from '../../models/models';
+
 import placeholderImg from '../../assets/images/placeholder.png';
+import { Album } from '../../models/models';
 
 type AlbumItemProps = {
 	album: Album;

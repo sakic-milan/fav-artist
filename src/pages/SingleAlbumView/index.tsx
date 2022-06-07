@@ -1,17 +1,16 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
-import { Track } from '../../models/models';
-import { selectFavArtist } from '../../store/reducers';
-import { useAppSelector } from '../../store';
-
-import { get } from '../../utils/api';
-import SingleTrack from '../../components/Track';
 
 import { BackgroundWrapper } from '../../components/shared/BackgroundWrapper';
+import SingleTrack from '../../components/Track';
+import { Track } from '../../models/models';
+import { useAppSelector } from '../../store';
+import { selectFavArtist } from '../../store/reducers';
+import { get } from '../../utils/api';
 
 const SingleAlbumView = () => {
-	let { name } = useParams();
+	const { name } = useParams();
 	const [tracks, setTracks] = useState<Track[]>([]);
 	const [isLoading, setIsLoading] = useState(false);
 	const favArtist = useAppSelector(selectFavArtist);

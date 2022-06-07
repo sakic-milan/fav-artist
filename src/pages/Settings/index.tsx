@@ -1,19 +1,20 @@
-import { useState, ChangeEvent } from 'react';
+import { ChangeEvent,useState } from 'react';
+
+import placeholderImg from '../../assets/images/placeholder.png';
+import {
+	ArtistCard,
+	CardImage,
+	SearchGrid,
+} from '../../components/styles/Settings.styled';
+import {
+	Button,
+	Input,
+	PageHeading,
+} from '../../components/styles/Shared.styled';
+import { Artist } from '../../models/models';
 import { useAppDispatch } from '../../store';
 import { setFavArtist } from '../../store/reducers';
 import { get } from '../../utils/api';
-import {
-	PageHeading,
-	Input,
-	Button,
-} from '../../components/styles/Shared.styled';
-import {
-	SearchGrid,
-	ArtistCard,
-	CardImage,
-} from '../../components/styles/Settings.styled';
-import { Artist } from '../../models/models';
-import placeholderImg from '../../assets/images/placeholder.png';
 
 const Settings = () => {
 	const [searchResults, setSearchResults] = useState<Artist[]>([]);

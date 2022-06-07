@@ -1,19 +1,19 @@
-import styled from 'styled-components';
+import { Home } from '@styled-icons/boxicons-regular/Home';
+import { Search } from '@styled-icons/boxicons-regular/Search';
 import { SettingsOutline } from '@styled-icons/evaicons-outline/SettingsOutline';
 import { FavoriteBorder } from '@styled-icons/material/FavoriteBorder';
-import { Search } from '@styled-icons/boxicons-regular/Search';
-import { Home } from '@styled-icons/boxicons-regular/Home';
+import styled from 'styled-components';
+
+import { useAppSelector } from '../../../store';
+import { selectFavArtist } from '../../../store/reducers';
 import { Container } from '../../styles/Container.styled';
+import { Flex } from '../../styles/Flex.styled';
 import {
-	StyledHeader,
 	Logo,
 	Navigation,
 	NavigationItem,
+	StyledHeader,
 } from '../../styles/Header.styled';
-import { useAppSelector } from '../../../store';
-import { selectFavArtist } from '../../../store/reducers';
-
-import { Flex } from '../../styles/Flex.styled';
 
 const Header = () => {
 	const favArtist = useAppSelector(selectFavArtist);

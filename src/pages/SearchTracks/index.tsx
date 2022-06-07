@@ -1,17 +1,16 @@
-import { useState, ChangeEvent } from 'react';
+import { ChangeEvent,useState } from 'react';
 import styled from 'styled-components';
+
+import {
+	Button,
+	Input,
+	PageHeading,
+} from '../../components/styles/Shared.styled';
+import SingleTrack from '../../components/Track';
 import { Track } from '../../models/models';
 import { useAppSelector } from '../../store';
 import { selectFavArtist } from '../../store/reducers';
-
-import SingleTrack from '../../components/Track';
 import { get } from '../../utils/api';
-
-import {
-	PageHeading,
-	Button,
-	Input,
-} from '../../components/styles/Shared.styled';
 
 const SearchTracks = () => {
 	const [search, setSearch] = useState('');

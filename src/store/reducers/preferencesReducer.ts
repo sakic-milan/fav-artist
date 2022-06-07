@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Track, Artist } from '../../models/models';
+
+import { Artist,Track } from '../../models/models';
 import type { RootState } from '../index';
 
 interface PreferencesState {

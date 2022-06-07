@@ -1,17 +1,17 @@
 import { useEffect, useMemo, useState } from 'react';
-import styled from 'styled-components';
 import { SortAlphaDown } from '@styled-icons/bootstrap/SortAlphaDown';
 import { SortNumericDownAlt } from '@styled-icons/fa-solid/SortNumericDownAlt';
+import styled from 'styled-components';
 
-import { Button } from '../../components/styles/Shared.styled';
-import { get } from '../../utils/api';
-import { Album } from '../../models/models';
-import { sortAlbumsByName } from '../../utils/sort';
-import { useAppSelector } from '../../store';
-import { selectFavArtist } from '../../store/reducers';
 import AlbumItem from '../../components/Album/AlbumItem';
 import BackgroundWrapper from '../../components/shared/BackgroundWrapper';
 import GridItem from '../../components/shared/GridItem';
+import { Button } from '../../components/styles/Shared.styled';
+import { Album } from '../../models/models';
+import { useAppSelector } from '../../store';
+import { selectFavArtist } from '../../store/reducers';
+import { get } from '../../utils/api';
+import { sortAlbumsByName } from '../../utils/sort';
 
 const Home = () => {
 	const [albums, setAlbums] = useState<Album[]>();

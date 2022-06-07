@@ -1,5 +1,5 @@
-import styled from 'styled-components';
 import { HeartFill } from '@styled-icons/bootstrap/HeartFill';
+import styled from 'styled-components';
 
 export const Container = styled.div`
 	width: 100%;

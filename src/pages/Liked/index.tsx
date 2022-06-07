@@ -1,8 +1,9 @@
 import styled from 'styled-components';
-import { useAppSelector } from '../../store';
+
 import { PageHeading } from '../../components/styles/Shared.styled';
-import { selectLikedTracks, selectFavArtist } from '../../store/reducers';
 import SingleTrack from '../../components/Track';
+import { useAppSelector } from '../../store';
+import { selectFavArtist,selectLikedTracks } from '../../store/reducers';
 
 const Liked = () => {
 	const likedTracks = useAppSelector(selectLikedTracks);
