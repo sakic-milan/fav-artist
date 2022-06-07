@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, ChangeEvent } from 'react';
 import { useAppDispatch } from '../../store';
 import { setFavArtist } from '../../store/reducers';
 import { get } from '../../utils/api';
@@ -50,7 +50,7 @@ const Settings = () => {
 		}
 	};
 
-	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+	const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
 		setQuery(e.target.value);
 		asyncSearch();
 	};
