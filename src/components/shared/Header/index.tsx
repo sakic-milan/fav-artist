@@ -1,4 +1,8 @@
 import styled from 'styled-components';
+import { SettingsOutline } from '@styled-icons/evaicons-outline/SettingsOutline';
+import { FavoriteBorder } from '@styled-icons/material/FavoriteBorder';
+import { Search } from '@styled-icons/boxicons-regular/Search';
+import { Home } from '@styled-icons/boxicons-regular/Home';
 import { Container } from '../../styles/Container.styled';
 import {
 	StyledHeader,
@@ -8,11 +12,6 @@ import {
 } from '../../styles/Header.styled';
 import { useAppSelector } from '../../../store';
 import { selectFavArtist } from '../../../store/reducers';
-
-import { SettingsOutline } from '@styled-icons/evaicons-outline/SettingsOutline';
-import { FavoriteBorder } from '@styled-icons/material/FavoriteBorder';
-import { Search } from '@styled-icons/boxicons-regular/Search';
-import { Home } from '@styled-icons/boxicons-regular/Home';
 
 import { Flex } from '../../styles/Flex.styled';
 

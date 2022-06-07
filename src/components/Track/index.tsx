@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import styled from 'styled-components';
+import { Heart } from '@styled-icons/bootstrap/Heart';
 import { Button } from '../styles/Shared.styled';
 import { Container, TrackName, Liked } from '../styles/Track.styled';
 import { Track } from '../../models/models';
@@ -9,8 +10,6 @@ import {
 	likeTrack,
 	selectIfTrackIsLiked,
 } from '../../store/reducers';
-
-import { Heart } from '@styled-icons/bootstrap/Heart';
 
 type SingleTrackProps = {
 	track: Track;
