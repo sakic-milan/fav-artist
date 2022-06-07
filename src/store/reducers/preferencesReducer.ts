@@ -1,16 +1,18 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { Artist,Track } from '../../models/models';
+import { Artist, Theme,Track } from '../../models/models';
 import type { RootState } from '../index';
 
 interface PreferencesState {
 	likedTracks: Track[];
 	favArtist: Artist | null;
+	theme: Theme;
 }
 
 const initialState: PreferencesState = {
 	likedTracks: [],
 	favArtist: null,
+	theme: Theme.Purple,
 };
 
 export const preferencesSlice = createSlice({
@@ -36,10 +38,17 @@ export const preferencesSlice = createSlice({
 		setFavArtist: (state, action: PayloadAction<Artist>) => {
 			state.favArtist = action.payload;
 		},
+		switchTheme: state => {
+			if (state.theme === Theme.Green) {
+				state.theme = Theme.Purple;
+			} else {
+				state.theme = Theme.Green;
+			}
+		},
 	},
 });
 
-export const { likeTrack, dislikeTrack, setFavArtist } =
+export const { likeTrack, dislikeTrack, setFavArtist, switchTheme } =
 	preferencesSlice.actions;
 
 export const selectLikedTracks = (state: RootState) =>
@@ -50,5 +59,7 @@ export const selectFavArtist = (state: RootState) =>
 
 export const selectIfTrackIsLiked = (state: RootState, track: Track) =>
 	!!state.preferences.likedTracks.find(t => t.name === track.name);
+
+export const selectTheme = (state: RootState) => state.preferences.theme;
 
 export const preferencesReducer = preferencesSlice.reducer;

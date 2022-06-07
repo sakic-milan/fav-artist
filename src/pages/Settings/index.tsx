@@ -1,4 +1,4 @@
-import { ChangeEvent,useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 
 import placeholderImg from '../../assets/images/placeholder.png';
 import {
@@ -11,9 +11,9 @@ import {
 	Input,
 	PageHeading,
 } from '../../components/styles/Shared.styled';
-import { Artist } from '../../models/models';
-import { useAppDispatch } from '../../store';
-import { setFavArtist } from '../../store/reducers';
+import { Artist, Theme } from '../../models/models';
+import { useAppDispatch,useAppSelector } from '../../store';
+import { selectTheme,setFavArtist, switchTheme } from '../../store/reducers';
 import { get } from '../../utils/api';
 
 const Settings = () => {
@@ -24,8 +24,14 @@ const Settings = () => {
 
 	const url = `method=artist.search&artist=${query}&format=json`;
 
+	const theme = useAppSelector(selectTheme);
+
 	const handleChangeFavArtist = (artist: Artist) => {
 		dispatch(setFavArtist(artist));
+	};
+
+	const handleChangeTheme = () => {
+		dispatch(switchTheme());
 	};
 
 	const getArtists = async () => {
@@ -58,7 +64,11 @@ const Settings = () => {
 
 	return (
 		<>
-			<PageHeading>Choose your favorite artist</PageHeading>
+			<PageHeading>Choose app theme</PageHeading>
+			<Button type="button" onClick={handleChangeTheme}>
+				{`Switch to ${theme === 'purple' ? 'Green' : 'Purple'} theme`}
+			</Button>
+			<PageHeading>Choose favorite artist</PageHeading>
 			<Input value={query} onChange={handleInputChange} />
 			<Button type="button" onClick={handleSearch}>
 				Search

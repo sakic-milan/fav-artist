@@ -21,3 +21,8 @@ export interface Artist {
 	listeners: string;
 	image: { '#text': string; size: string }[];
 }
+
+export enum Theme {
+	Purple = 'purple',
+	Green = 'green',
+}
