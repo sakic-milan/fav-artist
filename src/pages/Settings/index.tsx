@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 
 import placeholderImg from '../../assets/images/placeholder.png';
 import {
@@ -9,16 +9,19 @@ import {
 import {
 	Button,
 	Input,
+	Loader,
 	PageHeading,
 } from '../../components/styles/Shared.styled';
-import { Artist, Theme } from '../../models/models';
-import { useAppDispatch,useAppSelector } from '../../store';
-import { selectTheme,setFavArtist, switchTheme } from '../../store/reducers';
+import useDebounce from '../../hooks/useDebounce';
+import { Artist } from '../../models/models';
+import { useAppDispatch, useAppSelector } from '../../store';
+import { selectTheme, setFavArtist, switchTheme } from '../../store/reducers';
 import { get } from '../../utils/api';
 
 const Settings = () => {
 	const [searchResults, setSearchResults] = useState<Artist[]>([]);
 	const [query, setQuery] = useState<string>('');
+	const debouncedValue = useDebounce<string>(query, 250);
 	const [isLoading, setIsLoading] = useState<boolean>(false);
 	const dispatch = useAppDispatch();
 
@@ -42,7 +45,7 @@ const Settings = () => {
 				setSearchResults(res.results.artistmatches.artist);
 			})
 			.catch(e => {
-				alert("Couldn't get artists");
+				console.log("Couldn't get artists");
 			})
 			.finally(() => setIsLoading(false));
 	};
@@ -51,15 +54,12 @@ const Settings = () => {
 		getArtists();
 	};
 
-	const asyncSearch = () => {
-		if (query.length >= 2) {
-			getArtists();
-		}
-	};
+	useEffect(() => {
+		getArtists();
+	}, [debouncedValue]);
 
 	const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
 		setQuery(e.target.value);
-		asyncSearch();
 	};
 
 	return (
@@ -73,14 +73,19 @@ const Settings = () => {
 			<Button type="button" onClick={handleSearch}>
 				Search
 			</Button>
+
 			<SearchGrid>
-				{searchResults.map(artist => (
-					<ResultCard
-						key={artist.mbid}
-						artist={artist}
-						setFavArtist={handleChangeFavArtist}
-					/>
-				))}
+				{isLoading ? (
+					<Loader />
+				) : (
+					searchResults.map(artist => (
+						<ResultCard
+							key={artist.name}
+							artist={artist}
+							setFavArtist={handleChangeFavArtist}
+						/>
+					))
+				)}
 			</SearchGrid>
 		</>
 	);
@@ -94,7 +99,7 @@ const ResultCard = (props: {
 }) => {
 	const { artist, setFavArtist } = props;
 	return (
-		<ArtistCard onClick={() => setFavArtist(artist)}>
+		<ArtistCard to="/" onClick={() => setFavArtist(artist)}>
 			<p>{artist.name}</p>
 			<span>{`Listeners: ${artist.listeners}`}</span>
 			<CardImage

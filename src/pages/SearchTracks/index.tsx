@@ -1,9 +1,10 @@
-import { ChangeEvent,useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import styled from 'styled-components';
 
 import {
 	Button,
 	Input,
+	Loader,
 	PageHeading,
 } from '../../components/styles/Shared.styled';
 import SingleTrack from '../../components/Track';
@@ -53,7 +54,7 @@ const SearchTracks = () => {
 			))}
 		</>
 	) : (
-		<>Loading...</>
+		<Loader />
 	);
 };
 

@@ -14,7 +14,7 @@ export const purpleTheme = {
 export const greenTheme = {
 	colors: {
 		header: 'green',
-		purpleFade: '#d8b8fc',
+		purpleFade: '#d3fabe',
 		white: '#fff',
 		body: '#fff',
 		lastfmRed: '#D92323',

@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { SortAlphaDown } from '@styled-icons/bootstrap/SortAlphaDown';
 import { SortNumericDownAlt } from '@styled-icons/fa-solid/SortNumericDownAlt';
 import styled from 'styled-components';
@@ -6,7 +7,7 @@ import styled from 'styled-components';
 import AlbumItem from '../../components/Album/AlbumItem';
 import BackgroundWrapper from '../../components/shared/BackgroundWrapper';
 import GridItem from '../../components/shared/GridItem';
-import { Button } from '../../components/styles/Shared.styled';
+import { Button, NoArtistWrapper } from '../../components/styles/Shared.styled';
 import { Album } from '../../models/models';
 import { useAppSelector } from '../../store';
 import { selectFavArtist } from '../../store/reducers';
@@ -58,6 +59,15 @@ const Home = () => {
 	);
 
 	const buttonText = sortByName ? name : popularity;
+
+	if (!favArtist) {
+		return (
+			<NoArtistWrapper>
+				<h3>Please select your favorite artist from </h3>
+				<Link to="/settings">Settings page</Link>
+			</NoArtistWrapper>
+		);
+	}
 
 	return (
 		<BackgroundWrapper>

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 export const PageHeading = styled.h1`
 	font-size: 28px;
@@ -37,5 +37,39 @@ export const Input = styled.input`
 
 	&:focus {
 		outline: red;
+	}
+`;
+
+const rotate360 = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+`;
+
+export const Loader = styled.div`
+	animation: ${rotate360} 1s linear infinite;
+	transform: translateZ(0);
+
+	border-top: 2px solid ${({ theme }) => theme.colors.header};
+	border-right: 2px solid ${({ theme }) => theme.colors.header};
+	border-bottom: 2px solid ${({ theme }) => theme.colors.header};
+	border-left: 4px solid ${({ theme }) => theme.colors.header};
+	background: transparent;
+	width: 34px;
+	height: 34px;
+	border-radius: 50%;
+`;
+
+export const NoArtistWrapper = styled.div`
+	display: flex;
+	margin: 40px auto;
+	padding: 10px;
+	font-size: 24px;
+
+	h3 {
+		margin-right: 5px;
 	}
 `;

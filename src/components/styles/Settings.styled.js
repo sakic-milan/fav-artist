@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const SearchGrid = styled.div`
@@ -10,10 +11,12 @@ export const SearchGrid = styled.div`
 	padding: 12px 0;
 `;
 
-export const ArtistCard = styled.article`
+export const ArtistCard = styled(Link)`
 	position: relative;
 	display: flex;
 	padding: 4px 10px;
+	text-decoration: none;
+	cursor: pointer;
 	flex-direction: column;
 	justify-content: space-between;
 	background-color: white;
